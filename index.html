@@ -22,8 +22,8 @@
       <h1>
 <a id="high-performance-computing-in-deep-learning" class="anchor" href="#high-performance-computing-in-deep-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>High-Performance Computing in Deep Learning</h1>
 
-<h2>
-<a id="team-members" class="anchor" href="#team-members" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team Members</h2>
+<h3>
+<a id="team-members" class="anchor" href="#team-members" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team Members</h3>
 
 <ul>
 <li>Sahar Harati (<a href="https://github.com/saharati90" class="user-mention">@saharati90</a>), Second Year PhD Student, Computer Science Department, Emory University</li>
@@ -49,7 +49,16 @@ To illustrate the point, imagine that we want to build a speech recognition syst
 
 <p>This process of constantly implementing solutions, experimenting with them and then coming up with a redesign is very time consuming. A good portion of the time invested in this process goes towards running experiments with typically large data. Using techniques from HPC, and running experiments on large clusters is bound to reduce the timing of this iterative process and give the engineer the ability to try more novel solutions in shorter timeframes. </p>
 
-<p>Given any computational model we also have the intuition that increasing the training data, we can achieve higher accuracies. But it is suggested [1] that there is an upper bound on the added performance when just increasing the volume of training data and after some point, one has to use more complicated learning techniques. In this work, we want to verify this hypothesis by testing different machine learning architectures on a dataset, increasing the volume of the data to a point where no significant improvement is resulted, and then improving the machine learning architecture each time. As the experiment time would become prohibitive, we will set-up a high performance computing environment for performing the experiments.</p>
+<p>Given any computational model we also have the intuition that increasing the training data, we can achieve higher accuracies. But it is suggested [1] that there is an upper bound on the added performance when just increasing the volume of training data and after some point, one has to use more complicated learning techniques. In this work, we want to verify this hypothesis by testing different machine learning architectures on a dataset, increasing the volume of the data to a point where no significant improvement is resulted, and then improving the machine learning architecture each time. As the experiment time would become prohibitive, we will set-up a high-performance computing environment for performing the experiments.</p>
+
+<h2>
+<a id="methodology" class="anchor" href="#methodology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methodology</h2>
+
+<p>After cleaning up the data, we will apply a simple one layer neural network to the data. The optimization is performed using a Logloss cost function. We start by a small batch of data, and gradually increase the size of the training data up to a point when no significant increase in the performance is noted. </p>
+
+<p>At this point, we will increase the complexity of our model, by iteratively changing our architecture to one that includes many more hidden layers. Each time the amount of data that will produce the optimum accuracy is noted, along with performance metrics discussed in our Metrics section. </p>
+
+<p>To be able to note the effect of using larger volumes of data, we will set up a high performance computing center and balance the load on as many GPUs as our budget allows. This would make the experimenting phase possible within a reasonable time frame. </p>
 
 <h2>
 <a id="data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data</h2>
@@ -66,7 +75,7 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 <li>claims for which additional information is required before approval</li>
 </ol>
 
-<p>Working on this dataset, we want to predict the category of a claim based on features available early in the process, helping BNP Paribas Cardif accelerate its claims process and therefore, provide a better service to its customers.This dataset contains 114322 claims with 131 features. There are lots of missing </p>
+<p>Working on this dataset, we want to predict the category of a claim based on features available early in the process, helping BNP Paribas Cardif accelerate its claims process and therefore, provide a better service to its customers.This dataset contains 114322 claims with 131 features. </p>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
