@@ -22,6 +22,35 @@
       <h2>
 <a id="high-performance-computing-in-deep-learning" class="anchor" href="#high-performance-computing-in-deep-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>High-Performance Computing in Deep Learning</h2>
 
+<h1>
+<a id="team-members" class="anchor" href="#team-members" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team Members</h1>
+
+<ul>
+<li>Sahar Harati, Second Year PhD Student, Computer Science Department, Emory University</li>
+<li>Mohsen Salari, First Year PhD Student, Biomedical Informatics Department, Emory University</li>
+<li>Pooya Mobadersany, First Year PhD Student, Biomedical Informatics Department, Emory University</li>
+</ul>
+
+<h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>Machine learning is an iterative experimental process. The common methodology in solving a problem involves a preliminary idea, upon which the first solution is developed. After building the proposed solution and performing experiments on the solution, more often than not one finds himself redesigning the architecture in an effort to overcome the shortcomings of the original solution. 
+To illustrate the point, imagine that we want to build a speech recognition system capable of deciphering uttered letters in a wave file. One of the first solutions that may come to mind would be a multilayer neural network similar to the one depicted in the figure below. </p>
+
+<p><img src="https://raw.githubusercontent.com/Saharati90/DeepHPC/master/images/simple_network2.png" alt="simple network"> </p>
+
+<p><em>Picture credits: Andrew Ng</em></p>
+
+<p>After implementing one such architecture and evaluating the results, one may notice that refining the network to a recurrent neural network instead of a simple network may be better able to capture the temporal dependency of the uttered letters and hence improve the performance of the system. So the architecture is transformed into a network similar to figure below.</p>
+
+<p><img src="https://raw.githubusercontent.com/Saharati90/DeepHPC/master/images/rnn.png" alt="RNN"> </p>
+
+<p><em>Picture credits: Andrew Ng</em></p>
+
+<p>This process of constantly implementing solutions, experimenting with them and then coming up with a redesign is very time consuming. A good portion of the time invested in this process goes towards running experiments with typically large data. Using techniques from HPC, and running experiments on large clusters is bound to reduce the timing of this iterative process and give the engineer the ability to try more novel solutions in shorter timeframes. </p>
+
+<p>Given any computational model we also have the intuition that increasing the training data, we can achieve higher accuracies. But it is suggested [1] that there is an upper bound on the added performance when just increasing the volume of training data and after some point, one has to use more complicated learning techniques. In this work, we want to verify this hypothesis by testing different machine learning architectures on a dataset, increasing the volume of the data to a point where no significant improvement is resulted, and then improving the machine learning architecture each time. As the experiment time would become prohibitive, we will set-up a high performance computing environment for performing the experiments.</p>
+
 <h3>
 <a id="data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data</h3>
 
