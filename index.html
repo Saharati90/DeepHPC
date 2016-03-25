@@ -22,15 +22,6 @@
       <h1>
 <a id="high-performance-computing-in-deep-learning" class="anchor" href="#high-performance-computing-in-deep-learning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>High-Performance Computing in Deep Learning</h1>
 
-<h3>
-<a id="team-members" class="anchor" href="#team-members" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team Members</h3>
-
-<ul>
-<li>Sahar Harati (<a href="https://github.com/saharati90" class="user-mention">@saharati90</a>), Second Year PhD Student, Computer Science Department, Emory University</li>
-<li>Mohsen Salari (<a href="https://github.com/mohsensalari" class="user-mention">@mohsensalari</a>), First Year PhD Student, Biomedical Informatics Department, Emory University</li>
-<li>Pooya Mobadersany (<a href="https://github.com/pooya-mobadersany" class="user-mention">@pooya-mobadersany</a>), First Year PhD Student, Biomedical Informatics Department, Emory University</li>
-</ul>
-
 <h2>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
 
@@ -88,15 +79,21 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 
 <p>Working on this dataset, we want to predict the category of a claim based on features available early in the process, helping BNP Paribas Cardif accelerate its claims process and therefore, provide a better service to its customers.This dataset contains 114322 claims with 131 features. </p>
 
+<h1>
+<a id="evaluation" class="anchor" href="#evaluation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Evaluation:</h1>
+
+<p>In our project we want to implement different architectures of neural networks with different complexities on a large dataset to spot the effect of complexity of neural networks on its accuracy on large datasets. There is an assumption in machine learning which says simple machine architectures don't learn from extra provided data. However, if we increase the complexity of machine then the performance would increase by the increase in amount of data. It is very important to consider that it is not applicable to train very complex neural networks on very large datasets, since it needs a lot of time. Therefore, it is very important to take advantage of some high performance computing techniques like using multiple GPUs/CPUs to split the dataset into different batches and load these batches to the designed complex neural network while it is training on some other data batches.</p>
+
+<p>In this project we aim to measure the strong/weak scaling and the speed up of different neural network architectures to evaluate the effect of using hpc techniques in complex neural networks and measure the accuracy of different architectures on large datasets to evaluate how complexity affects neural network's learning and accuracy. To measure the accuracy of the network we will use logloss function which is generally used to measure the logarithm of the likelihood function for a Bernouli random distribution.</p>
+
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<ul>
+<li>Mohsen Salari (<a href="https://github.com/mohsensalari" class="user-mention">@mohsensalari</a>), First Year PhD Student, Biomedical Informatics Department, Emory University</li>
+<li>Pooya Mobadersany (<a href="https://github.com/pooya-mobadersany" class="user-mention">@pooya-mobadersany</a>), First Year PhD Student, Biomedical Informatics Department, Emory University</li>
+<li>Sahar Harati (<a href="https://github.com/saharati90" class="user-mention">@saharati90</a>), Second Year PhD Student, Computer Science Department, Emory University</li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Saharati90/DeepHPC">DeepHPC</a> is maintained by <a href="https://github.com/Saharati90">Saharati90</a>.</span>
