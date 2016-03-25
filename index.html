@@ -60,6 +60,17 @@ To illustrate the point, imagine that we want to build a speech recognition syst
 
 <p>To be able to note the effect of using larger volumes of data, we will set up a high performance computing center and balance the load on as many GPUs as our budget allows. This would make the experimenting phase possible within a reasonable time frame. </p>
 
+<h3>
+<a id="tensorflow" class="anchor" href="#tensorflow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TensorFlow:</h3>
+
+<p>TensorFlow is an open source software library for numerical computation using data flow graphs in which nodes in the graph represent mathematical operations, while the graph edges represent the multidimensional data arrays (tensors) communicated between them. </p>
+
+<p>TensorFlow is Google Brain's second generation machine learning system, with a reference implementation released as open source software last November. It provides a Python API, as well as a less documented C/C++ API.</p>
+
+<p>TensorFlow can run on multiple CPUs and GPUs (with optional CUDA extensions for general-purpose computing on graphics processing units). It runs on 64-bit Linux or Mac OS X desktop or server systems, as well as on mobile computing platforms, including Android and Apple's iOS. </p>
+
+<p>The purpose is to train neural networks to detect and decipher patterns and correlations. There are some other libraries for numerical computations in python. One of these libraries is Theano, which is one of the strong python libraries for machine learning tasks. However, Theano's applicability in different GPU's is not experimentally verified yet, which was one of the major reasons for pushing us through TensorFlow, which gives strong computational functions to use in neural networks like activation functions, calculating loss and gradient descent.</p>
+
 <h2>
 <a id="data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data</h2>
 
