@@ -89,12 +89,12 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 <h3>
 <a id="feature-selection-and-extraction" class="anchor" href="#feature-selection-and-extraction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature Selection and Extraction:</h3>
 
-<p>Many of the features in the dataset are not independent features which means they have no more information than other and are useless. We had to select a feature set which has some evident predictive power. Since we still haven't the Amazon cloud set yet, we couldn't use the whole traning set to see which features are more informative and important than others. We plan to use "xgboost" package for feature selection that currently takes weeks to run on our 4 cores machines. We could run it on a small portion of the dataset but since we are trying to get the most accurate predection utilizing HPC, it's prefered to use the whole dataset.</p>
+<p>Many of the features in the dataset are not independent features which mean they have no more information than other and are useless. We had to select a feature set which has some evident predictive power. Since we still haven't the Amazon cloud set yet, we couldn't use the whole training set to see which features are more informative and important than others. We plan to use "<a href="https://m2.icm.edu.pl/boruta/">Boruta</a>" package which is an all-relevant wrapper feature selection method that currently takes weeks to run on our 4 cores machines. We could run it on a small portion of the dataset but since we are trying to get the most accurate prediction utilizing HPC, it's prefered to use the whole dataset. While Boruta is generally a sequential algorithm, the underlying random forest classifier is a trivially parallel task and thus Boruta can be distributed even over a hundreds of cores, provided that a parallel version of the random forest algorithm is used.</p>
 
 <h3>
 <a id="categorical-features" class="anchor" href="#categorical-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Categorical Features</h3>
 
-<p>We simply counted the number of unique categories in each categorical feature and replaced each categorical value with an associated number. </p>
+<p>We simply counted the number of unique categories in each categorical feature and replaced each categorical value with an associated integer. </p>
 
 <h2>
 <a id="evaluation" class="anchor" href="#evaluation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Evaluation</h2>
