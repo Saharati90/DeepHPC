@@ -79,7 +79,22 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 
 <p>Working on this dataset, we want to predict the category of a claim based on features available early in the process, helping BNP Paribas Cardif accelerate its claims process and therefore, provide a better service to its customers.This dataset contains 114322 claims with 131 features. </p>
 
-<p>After fixing the pipeline of the project and achieving reasonable results on this dataset, we can use larger ones for further investigations. </p>
+<p>After fixing the pipeline of the project and achieving reasonable results on this dataset, we can use larger ones for further investigations.</p>
+
+<h3>
+<a id="missing-values" class="anchor" href="#missing-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Missing Values:</h3>
+
+<p>99.9% of NA's are most likely not missing at random, so imputing them with medians or means wouldn't help, and we treated them as information units. We also applied rounding to numerical variables, such as round(x,5). There is random noise [-1;1]*1e-7 added to each numeric variable.</p>
+
+<h3>
+<a id="feature-selection-and-extraction" class="anchor" href="#feature-selection-and-extraction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature Selection and Extraction:</h3>
+
+<p>Many of the features in the dataset are not independent features which means they have no more information than other and are useless. We had to select a feature set which has some evident predictive power. Since we still haven't the Amazon cloud set yet, we couldn't use the whole traning set to see which features are more informative and important than others. We plan to use "xgboost" package for feature selection that currently takes weeks to run on our 4 cores machines. We could run it on a small portion of the dataset but since we are trying to get the most accurate predection utilizing HPC, it's prefered to use the whole dataset.</p>
+
+<h3>
+<a id="categorical-features" class="anchor" href="#categorical-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Categorical Features</h3>
+
+<p>We simply counted the number of unique categories in each categorical feature and replaced each categorical value with an associated number. </p>
 
 <h2>
 <a id="evaluation" class="anchor" href="#evaluation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Evaluation</h2>
