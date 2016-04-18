@@ -134,6 +134,14 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 
 <p>To update the weights and biases in this model we used gradient descent optimizer to minimize the cross entropy as the cost function of the model.</p>
 
+<p>The system which we are doing our simulations has two GPUs, so to take the advantage of these available GPUs we have taken the following strategy:</p>
+
+<p>Our strategy in taking the advantage of two GPUs:</p>
+
+<p>1) We are splitting the data in different batches. Each GPU will do the training in one of the two batches which is loaded to each of them each time. It is very important to consider that the hyper-parameters of the Neural Network are updated in each step of training, so by considering that we have two different updates resulted from each GPU we will average the results of two GPUs to get the new hyper-parameters.</p>
+
+<p>2) There is a high latency in transferring the data from/to GPU. Therefore, we are making some queues in which the input data is putted in this queue each time the GPUs are training the batches. This will decrease the negative effect of the latency associated with GPUs' data transfer.</p>
+
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
