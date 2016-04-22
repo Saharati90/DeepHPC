@@ -140,7 +140,23 @@ In a world shaped by the emergence of new uses and lifestyles, everything is goi
 
 <p>1) We are splitting the data in different batches. Each GPU will do the training in one of the two batches which is loaded to each of them each time. It is very important to consider that the hyper-parameters of the Neural Network are updated in each step of training, so by considering that we have two different updates resulted from each GPU we will average the results of two GPUs to get the new hyper-parameters.</p>
 
-<p>2) There is a high latency in transferring the data from/to GPU. Therefore, we are making some queues in which the input data is putted in this queue each time the GPUs are training the batches. This will decrease the negative effect of the latency associated with GPUs' data transfer.</p>
+<p>2) There is a high latency in transferring the data from/to GPU. Therefore, we are making some queues in which the input data is put in this queue each time the GPUs are training the batches. This will decrease the negative effect of the latency associated with GPUs' data transfer.</p>
+
+<h2>
+<a id="update04222016" class="anchor" href="#update04222016" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Update(04/22/2016)</h2>
+
+<h3>
+<a id="what-we-have-done" class="anchor" href="#what-we-have-done" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What we have done</h3>
+
+<p>We've been able to run a "Compute Engine" instance on Google Cloud.
+We successfully installed python and TensorFlow on the running instance.</p>
+
+<h3>
+<a id="what-we-should-do" class="anchor" href="#what-we-should-do" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What we should do</h3>
+
+<ul>
+<li>Feeding the cleaned data into a small network on the running instance.</li>
+</ul>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
