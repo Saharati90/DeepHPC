@@ -24,7 +24,8 @@ def MyInput(csvpath, batch_size, indicator):
     with open(csvpath, 'rU') as csvfile:
         reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in reader:
-            mylist.append(row[0].split(','))
+            if row[0].split(',')[0]!='ID':
+                mylist.append(row[0].split(','))
             #if '' in row[0].split(','):
             #   myarray
             #else:
