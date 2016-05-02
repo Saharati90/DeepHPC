@@ -17,7 +17,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import csv
 from csv_read import MyInput
-csvpath = '/home/pooya/Desktop/hpc/new_train.csv'
+csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 
 import tensorflow as tf
 
@@ -90,6 +90,9 @@ with tf.Session() as sess:
         for i in range(total_train_batch):
             #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
             batch_xs, batch_ys = MyInput(csvpath, batch_size, i)
+            
+            print('train batch: %d\n'%i) # To see which batch is loaded correctly           
+            
             # Fit training using batch data
             sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys})
             # Compute average loss
