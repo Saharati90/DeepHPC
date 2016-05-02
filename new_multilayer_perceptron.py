@@ -16,9 +16,9 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import csv
 from new_csv_read import MyInput
-csvpath = '/home/pooya/Desktop/hpc/new_train.csv'
-
 import tensorflow as tf
+
+csvpath = '/home/pooya/Desktop/hpc/new_train.csv'
 
 train_data_percentage = 60
 test_data_percentage = 40
