@@ -91,15 +91,15 @@ with tf.Session() as sess:
             #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
             batch_xs, batch_ys = MyInput(csvpath, batch_size, i)
             
-            print('train batch: %d\n'%i) # To see which batch is loaded correctly           
+            #print('\ntrain batch: %d'%i) # To see which batch is loaded correctly           
             
             # Fit training using batch data
             sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys})
             # Compute average loss
             avg_cost += sess.run(cost, feed_dict={x: batch_xs, y: batch_ys})/total_batch
         # Display logs per epoch step
-        if epoch % display_step == 0:
-            print "Epoch:", '%04d' % (epoch+1), "cost=", "{:.9f}".format(avg_cost)
+        #if epoch % display_step == 0:
+            print "\nEpoch:", '%d' %(epoch+1), '/', '%d\n' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\n'%total_train_batch, "cost=", "{:.9f}".format(avg_cost)
 
     print "Optimization Finished!"
 
