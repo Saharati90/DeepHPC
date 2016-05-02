@@ -15,7 +15,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 #import input_data
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import csv
-from csv_read import MyInput
+from new_csv_read import MyInput
 csvpath = '/home/pooya/Desktop/hpc/new_train.csv'
 
 import tensorflow as tf
