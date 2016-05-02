@@ -37,6 +37,25 @@ n_hidden_2 = 256 # 2nd layer num features
 n_input = 127
 # n_classes = 10 # MNIST total classes (0-9 digits)
 n_classes = 2
+n_hidden = []
+n_layers = 3
+
+for i in range(n_layers):
+    n_hidden.append(256)
+n_hidden[0] = n_input
+n_hidden.append(n_classes)
+
+# Store layers weight & bias
+weights = {}
+for i in range(n_layers):
+    #print "(%d, %d)" % (n_hidden[i],n_hidden[i+1])
+    weights[i] = tf.Variable(tf.random_normal([n_hidden[i], n_hidden[i+1]]))
+
+biases = {}
+for i in range(n_layers):
+    biases[i] = tf.Variable(tf.random_normal([n_hidden[i+1]]))
+
+
 
 # tf Graph input
 x = tf.placeholder("float", [None, n_input])
@@ -44,21 +63,12 @@ y = tf.placeholder("float", [None, n_classes])
 
 # Create model
 def multilayer_perceptron(_X, _weights, _biases):
-    layer_1 = tf.nn.relu(tf.add(tf.matmul(_X, _weights['h1']), _biases['b1'])) #Hidden layer with RELU activation
-    layer_2 = tf.nn.relu(tf.add(tf.matmul(layer_1, _weights['h2']), _biases['b2'])) #Hidden layer with RELU activation
-    return tf.matmul(layer_2, _weights['out']) + _biases['out']
-
-# Store layers weight & bias
-weights = {
-    'h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
-    'h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
-    'out': tf.Variable(tf.random_normal([n_hidden_2, n_classes]))
-}
-biases = {
-    'b1': tf.Variable(tf.random_normal([n_hidden_1])),
-    'b2': tf.Variable(tf.random_normal([n_hidden_2])),
-    'out': tf.Variable(tf.random_normal([n_classes]))
-}
+    layers = []
+    layers.append(tf.nn.relu(tf.add(tf.matmul(_X, _weights[0]), _biases[0]))) #Hidden layer with RELU activation
+    for i in range(1,n_layers-1):
+        layers.append(tf.nn.relu(tf.add(tf.matmul(layers[i-1], _weights[i]), _biases[i])))
+        #print "layers [%d] =  (layers %d, weights %d + b %d)" % (i,i-1,i,i)
+    return tf.matmul(layers[n_layers-2], _weights[n_layers-1]) + _biases[n_layers-1]
 
 # Construct model
 pred = multilayer_perceptron(x, weights, biases)
