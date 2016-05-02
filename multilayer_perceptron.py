@@ -20,21 +20,20 @@ from csv_read import MyInput
 csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 
 import tensorflow as tf
+def run_experiments(n_layers):
+    train_data_percentage = 60
+    test_data_percentage = 40
 
-train_data_percentage = 60
-test_data_percentage = 40
+    # Parameters
+    learning_rate = 0.001
+    training_epochs = 15
+    batch_size = 100
+    display_step = 1
 
-# Parameters
-learning_rate = 0.001
-training_epochs = 15
-batch_size = 100
-display_step = 1
-
-# Network Parameters
-n_input = 127
-n_classes = 2
-n_hidden = []
-for n_layers in range(3,100,10):
+    # Network Parameters
+    n_input = 127
+    n_classes = 2
+    n_hidden = []
     for i in range(n_layers):
         n_hidden.append(256)
     n_hidden[0] = n_input
@@ -123,3 +122,7 @@ for n_layers in range(3,100,10):
         indicator = int(total_batch/total_test_batch) - 1
         test_batch_xs, test_batch_ys = MyInput(csvpath, total_test_batch, indicator)
         print "Accuracy:", accuracy.eval({x: test_batch_xs, y: test_batch_ys})
+
+if __name__ == '__main__':
+    for n_layers in range(3,200,10):
+        run_experiments(n_layers)
