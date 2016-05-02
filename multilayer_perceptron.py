@@ -34,7 +34,7 @@ display_step = 1
 n_hidden_1 = 256 # 1st layer num features
 n_hidden_2 = 256 # 2nd layer num features
 # n_input = 784 # MNIST data input (img shape: 28*28)
-n_input = 131
+n_input = 127
 # n_classes = 10 # MNIST total classes (0-9 digits)
 n_classes = 2
 
