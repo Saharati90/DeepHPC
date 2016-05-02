@@ -73,6 +73,9 @@ pred = multilayer_perceptron(x, weights, biases)
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost) # Adam Optimizer
 
+correct_prediction_train = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
+train_accuracy = tf.reduce_mean(tf.cast(correct_prediction_train, "float"))
+
 # Initializing the variables
 init = tf.initialize_all_variables()
 
@@ -103,10 +106,13 @@ with tf.Session() as sess:
             sess.run(optimizer, feed_dict={x: batch_xs, y: batch_ys})
             # Compute average loss
             avg_cost += sess.run(cost, feed_dict={x: batch_xs, y: batch_ys})/total_batch
+            
+            correct_prediction_train_ratio = sess.run(train_accuracy, feed_dict={x: batch_xs, y: batch_ys})
+            print "\nEpoch:", '%d' %(epoch+1), '/', '%d\n' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\n'%total_train_batch
         # Display logs per epoch step
-        #if epoch % display_step == 0:
+        if epoch % display_step == 0:
             print "\nEpoch:", '%d' %(epoch+1), '/', '%d\n' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\n'%total_train_batch, "cost=", "{:.9f}".format(avg_cost)
-
+            print "\nCorrect prediction ratio for train data in each batch:", '%f'%correct_prediction_train_ratio
     print "Optimization Finished!"
 
     # Test model
