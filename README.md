@@ -7,4 +7,4 @@
 
 3) Run the multilayer_perceptron.py
 
-4) Enjoy the result!
+4) Enjoy the results!
