@@ -2,6 +2,7 @@
 """
 Created on Fri Apr 29 01:37:25 2016
 
+@author: pooya
 """
 
 def MyInput(csvpath, batch_size, indicator):
@@ -15,7 +16,7 @@ def MyInput(csvpath, batch_size, indicator):
     import random
     import numpy as np
 
-    SEED = 448
+    SEED = 449
     mylist = []
     batch_data = []
     batch_label = []
@@ -32,7 +33,7 @@ def MyInput(csvpath, batch_size, indicator):
     random.shuffle(mylist)
     for i in range(batch_size):
         batch_data.append(mylist[i + batch_size * indicator][2:133])
-        batch_label.append(mylist[i + batch_size * indicator][1])
+        batch_label.append(list(mylist[i + batch_size * indicator][1]))    
         
     batch_data = np.array(batch_data).astype(np.float32)
     batch_label = np.array(batch_label).astype(np.float64)
@@ -42,7 +43,7 @@ def MyInput(csvpath, batch_size, indicator):
     
     
 # test:
-#csvpath = '/home/pooya/Desktop/hpc/new_train.csv'
+#csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 #batch_data, batch_label = MyInput(csvpath, 20, 0)
 #print batch_data
 #print batch_label
