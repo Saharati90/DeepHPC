@@ -16,12 +16,12 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import csv
 from csv_read import MyInput
-csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
+#csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 
 import tensorflow as tf
 import time
 
-def run_experiments(n_layers):
+def run_experiments(n_layers, csvpath_train, csvpath_test):
     train_data_percentage = 1
     #test_data_percentage = 40
 
@@ -98,7 +98,7 @@ def run_experiments(n_layers):
             start_time = time.time()
             for i in range(total_train_batch):
                 #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
-                batch_xs, batch_ys = MyInput(csvpath, batch_size, i)
+                batch_xs, batch_ys = MyInput(csvpath_train, batch_size, i)
 
                 #print('\ntrain batch: %d'%i) # To see which batch is loaded correctly
 
@@ -123,11 +123,14 @@ def run_experiments(n_layers):
 
         #print "Accuracy:", accuracy.eval({x: mnist.test.images, y: mnist.test.labels})
         indicator = int(total_batch/total_test_batch) - 1
-        test_batch_xs, test_batch_ys = MyInput(csvpath, total_test_batch, indicator)
+        test_batch_xs, test_batch_ys = MyInput(csvpath_test, total_test_batch, indicator)
         print "\nAccuracy:", accuracy.eval({x: test_batch_xs, y: test_batch_ys})
 
 if __name__ == '__main__':
     for n_layers in range(3,200,10):
-        print "\n********************************************"
-        print "\nA network with %d layers:" % (n_layers)
-        run_experiments(n_layers)
+        for j in range(1,12):
+            csvpath_train = '/home/pooya/Desktop/hpc/test/dataset/train_'+'%d'%j+'.csv'
+            csvpath_test = '/home/pooya/Desktop/hpc/test/dataset/test.csv'
+            print "\n********************************************"
+            print "\nA network with %d layers:" % (n_layers)
+            run_experiments(n_layers, csvpath_train, csvpath_test)
