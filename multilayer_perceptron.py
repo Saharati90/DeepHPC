@@ -130,7 +130,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
 if __name__ == '__main__':
     for n_layers in range(3,200,10):
-        for j in range(12,1,-1):
+        for j in range(11,1,-1):
             csvpath_train = 'data/train_'+'%d'%j+'.csv'
             csvpath_test = 'data/test.csv'
             print "\n********************************************"
