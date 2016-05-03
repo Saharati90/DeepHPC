@@ -86,7 +86,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
         # Training cycle
         count = 0
-        with open(csvpath, 'rU') as count_file:
+        with open(csvpath_train, 'rU') as count_file:
             csv_reader = csv.reader(count_file)
             for row in csv_reader:
                 count += 1
