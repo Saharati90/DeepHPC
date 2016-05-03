@@ -15,8 +15,6 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 #import input_data
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import csv
-import scipy
-import numpy
 from csv_read import MyInput
 #csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 
@@ -24,7 +22,7 @@ import tensorflow as tf
 import time
 
 def run_experiments(n_layers, csvpath_train, csvpath_test):
-    train_data_percentage = 100
+    train_data_percentage = 1
     #test_data_percentage = 40
 
     # Parameters
@@ -130,9 +128,9 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
 if __name__ == '__main__':
     for n_layers in range(3,200,10):
-        for j in range(1,12):
-            csvpath_train = 'data/train_'+'%d'%j+'.csv'
-            csvpath_test = 'data/test.csv'
+        for j in range(12,1,-1):
+            csvpath_train = '/home/pooya/Desktop/hpc/test/dataset/train_'+'%d'%j+'.csv'
+            csvpath_test = '/home/pooya/Desktop/hpc/test/dataset/test.csv'
             print "\n********************************************"
             print "\nA network with %d layers:" % (n_layers)
             run_experiments(n_layers, csvpath_train, csvpath_test)
