@@ -24,6 +24,7 @@ import time
 
 def run_experiments(n_layers, csvpath_train, csvpath_test):
     train_data_percentage = 1
+    is_in_session = False
     #test_data_percentage = 40
 
     # Parameters
@@ -70,7 +71,9 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     pred = multilayer_perceptron(x, weights, biases)
     #print 'pred='
     #print pred
-
+    if (is_in_session):
+        print pred.eval()
+        
     # Define loss and optimizer
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
     optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost) # Adam Optimizer
@@ -84,7 +87,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_CORES)) as sess:
         sess.run(init)
-
+        is_in_session = True
         # Training cycle
         count = 0
         with open(csvpath_train, 'rU') as count_file:
