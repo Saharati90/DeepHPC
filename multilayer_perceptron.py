@@ -80,7 +80,8 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     init = tf.initialize_all_variables()
     NUM_CORES = 2  # Choose how many cores to use.
     # Launch the graph
-    with tf.Session() as sess:
+    with tf.Session(config=tf.ConfigProto(inter_op_parallelism_threads=NUM_CORES,
+                   intra_op_parallelism_threads=NUM_CORES)) as sess:
         sess.run(init)
 
         # Training cycle
@@ -89,7 +90,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
             csv_reader = csv.reader(count_file)
             for row in csv_reader:
                 count += 1
-        for epoch in range(training_epochs):
+        for epoch in range(training_epochs+1):
             avg_cost = 0.
             #total_batch = int(mnist.train.num_examples/batch_size)
             total_batch = int(count/batch_size)
@@ -97,7 +98,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
             total_test_batch = total_batch - total_train_batch
             # Loop over all batches
             start_time = time.time()
-            for i in range(total_train_batch):
+            for i in range(total_train_batch+1):
                 #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
                 batch_xs, batch_ys = MyInput(csvpath_train, batch_size, i)
 
