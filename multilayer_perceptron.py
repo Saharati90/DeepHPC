@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 22 14:14:53 2016
-
 @author: pooya
 """
 
@@ -20,13 +19,15 @@ from csv_read import MyInput
 csvpath = '/home/pooya/Desktop/hpc/test/new_train_2.csv'
 
 import tensorflow as tf
+import time
+
 def run_experiments(n_layers):
-    train_data_percentage = 60
-    test_data_percentage = 40
+    train_data_percentage = 1
+    #test_data_percentage = 40
 
     # Parameters
     learning_rate = 0.001
-    training_epochs = 15
+    training_epochs = 1
     batch_size = 100
     display_step = 1
 
@@ -94,6 +95,7 @@ def run_experiments(n_layers):
             total_train_batch = int(total_batch * train_data_percentage/100)
             total_test_batch = total_batch - total_train_batch
             # Loop over all batches
+            start_time = time.time()
             for i in range(total_train_batch):
                 #batch_xs, batch_ys = mnist.train.next_batch(batch_size)
                 batch_xs, batch_ys = MyInput(csvpath, batch_size, i)
@@ -106,12 +108,13 @@ def run_experiments(n_layers):
                 avg_cost += sess.run(cost, feed_dict={x: batch_xs, y: batch_ys})/total_batch
 
                 correct_prediction_train_ratio = sess.run(train_accuracy, feed_dict={x: batch_xs, y: batch_ys})
-                print "\nEpoch:", '%d' %(epoch+1), '/', '%d\n' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\n'%total_train_batch
+                #print "\nEpoch:", '%d' %(epoch+1), '/', '%d\t' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\t'%total_train_batch
             # Display logs per epoch step
+            end_time = time.time()
             if epoch % display_step == 0:
-                print "\nEpoch:", '%d' %(epoch+1), '/', '%d\n' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\n'%total_train_batch, "cost=", "{:.9f}".format(avg_cost)
-                print "\nCorrect prediction ratio for train data in each batch:", '%f'%correct_prediction_train_ratio
-        print "Optimization Finished!"
+                print "\nEpoch:", '%d' %(epoch+1), '/', '%d\t' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\t'%total_train_batch, "cost=", "{:.9f}\t".format(avg_cost), "Correct prediction per train batch:", '%f\t'%correct_prediction_train_ratio, "Training time per epoch: %f"%(end_time-start_time)
+                #print 
+        #print "Optimization Finished!"
 
         # Test model
         correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
@@ -121,8 +124,10 @@ def run_experiments(n_layers):
         #print "Accuracy:", accuracy.eval({x: mnist.test.images, y: mnist.test.labels})
         indicator = int(total_batch/total_test_batch) - 1
         test_batch_xs, test_batch_ys = MyInput(csvpath, total_test_batch, indicator)
-        print "Accuracy:", accuracy.eval({x: test_batch_xs, y: test_batch_ys})
+        print "\nAccuracy:", accuracy.eval({x: test_batch_xs, y: test_batch_ys})
 
 if __name__ == '__main__':
     for n_layers in range(3,200,10):
+        print "\n********************************************"
+        print "\nA network with %d layers:" % (n_layers)
         run_experiments(n_layers)
