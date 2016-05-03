@@ -10,7 +10,8 @@ This example is using the MNIST database of handwritten digits (http://yann.lecu
 Author: Aymeric Damien
 Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
-
+import scipy
+import numpy
 # Import MINST data
 #import input_data
 #mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
