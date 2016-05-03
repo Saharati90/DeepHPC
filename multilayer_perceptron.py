@@ -71,9 +71,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     pred = multilayer_perceptron(x, weights, biases)
     #print 'pred='
     #print pred
-    if (is_in_session):
-        print pred.eval()
-        
+    
     # Define loss and optimizer
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
     optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost) # Adam Optimizer
@@ -87,8 +85,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     # Launch the graph
     with tf.Session(config=tf.ConfigProto(intra_op_parallelism_threads=NUM_CORES)) as sess:
         sess.run(init)
-        is_in_session = True
-        
+
         # Training cycle
         count = 0
         with open(csvpath_train, 'rU') as count_file:
@@ -119,7 +116,6 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
             # Display logs per epoch step
             
             end_time = time.time()
-            print pred.eval()
             if epoch % display_step == 0:
                 print "\nEpoch:", '%d' %(epoch+1), '/', '%d\t' %training_epochs , "Iteration:", '%d' %(i+1), '/', '%d\t'%total_train_batch, "cost=", "{:.9f}\t".format(avg_cost), "Correct prediction per train batch:", '%f\t'%correct_prediction_train_ratio, "Training time per epoch: %f"%(end_time-start_time)
                 #print 
