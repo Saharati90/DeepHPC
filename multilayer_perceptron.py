@@ -45,11 +45,11 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
     weights = {}
     for i in range(n_layers):
         #print "(%d, %d)" % (n_hidden[i],n_hidden[i+1])
-        weights[i] = tf.Variable(tf.random_normal([n_hidden[i], n_hidden[i+1]]))
+        weights[i] = tf.Variable(tf.truncated_normal([n_hidden[i], n_hidden[i+1]]))
 
     biases = {}
     for i in range(n_layers):
-        biases[i] = tf.Variable(tf.random_normal([n_hidden[i+1]]))
+        biases[i] = tf.Variable(tf.truncated_normal([n_hidden[i+1]]))
 
 
 
@@ -68,6 +68,8 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
     # Construct model
     pred = multilayer_perceptron(x, weights, biases)
+    #print 'pred='
+    #print pred
 
     # Define loss and optimizer
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y)) # Softmax loss
@@ -129,7 +131,7 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
 if __name__ == '__main__':
     for n_layers in range(3,200,10):
-        for j in range(1,12):
+        for j in range(1,2):
             csvpath_train = 'data/train_'+'%d'%j+'.csv'
             csvpath_test = 'data/test.csv'
             print "\n********************************************"
