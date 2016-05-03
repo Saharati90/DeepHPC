@@ -77,9 +77,10 @@ def run_experiments(n_layers, csvpath_train, csvpath_test):
 
     # Initializing the variables
     init = tf.initialize_all_variables()
-
+    NUM_CORES = 2  # Choose how many cores to use.
     # Launch the graph
-    with tf.Session() as sess:
+    with tf.Session(config=tf.ConfigProto(inter_op_parallelism_threads=NUM_CORES,
+                   intra_op_parallelism_threads=NUM_CORES)) as sess:
         sess.run(init)
 
         # Training cycle
